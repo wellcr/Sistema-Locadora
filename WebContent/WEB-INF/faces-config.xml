@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="1.2" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xi="http://www.w3.org/2001/XInclude"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+ <!-- Regras de mapeamento de classe BACKEND -->
+ <managed-bean>
+  <managed-bean-name>clienteBacking</managed-bean-name>
+  <managed-bean-class>br.com.foursys.locadora.backingbean.ClienteBacking</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ 
+ <managed-bean>
+  <managed-bean-name>filmeBacking</managed-bean-name>
+  <managed-bean-class>br.com.foursys.locadora.backingbean.FilmeBacking</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ 
+ <managed-bean>
+  <managed-bean-name>vendedorBacking</managed-bean-name>
+  <managed-bean-class>br.com.foursys.locadora.backingbean.VendedorBacking</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ 
+ <managed-bean>
+  <managed-bean-name>locacaoBacking</managed-bean-name>
+  <managed-bean-class>br.com.foursys.locadora.backingbean.LocacaoBacking</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <!-- Regras de navegação de MENU -->
+ <navigation-rule>
+  <navigation-case>
+   <from-action>#{clienteBacking.cadastraCliente}</from-action>
+   <to-view-id>/cadastrarCliente.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <navigation-case>
+   <from-action>#{clienteBacking.consultaCliente}</from-action>
+   <to-view-id>/consultarCliente.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <navigation-case>
+   <from-action>#{clienteBacking.alteraCliente}</from-action>
+   <to-view-id>/alterarCliente.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <navigation-case>
+   <from-action>#{filmeBacking.cadastraFilme}</from-action>
+   <to-view-id>/cadastrarFilme.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <navigation-case>
+   <from-action>#{filmeBacking.consultaFilme}</from-action>
+   <to-view-id>/consultarFilme.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <navigation-case>
+   <from-action>#{filmeBacking.alteraFilme}</from-action>
+   <to-view-id>/alterarFilme.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <navigation-case>
+   <from-action>#{vendedorBacking.cadastraVendedor}</from-action>
+   <to-view-id>/cadastrarVendedor.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <navigation-case>
+   <from-action>#{vendedorBacking.consultaVendedor}</from-action>
+   <to-view-id>/consultarVendedor.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <navigation-case>
+   <from-action>#{vendedorBacking.alteraVendedor}</from-action>
+   <to-view-id>/alterarVendedor.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <navigation-case>
+   <from-action>#{locacaoBacking.efetuarLocacao}</from-action>
+   <to-view-id>/efetuarLocacao.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <!-- Regras de navegação da tela cadastra cliente -->
+ <navigation-rule>
+  <from-view-id>/cadastrarCliente.jsp</from-view-id>
+  <navigation-case>
+   <from-outcome>cancelar</from-outcome>
+   <to-view-id>/index.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <!-- Regras de navegação da tela consulta cliente -->
+ <navigation-rule>
+  <from-view-id>/consultarCliente.jsp</from-view-id>
+  <navigation-case>
+   <from-outcome>cancelar</from-outcome>
+   <to-view-id>/index.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <!-- Regras de navegação da tela altera cliente -->
+ <navigation-rule>
+  <from-view-id>/alterarCliente.jsp</from-view-id>
+  <navigation-case>
+   <from-outcome>cancelar</from-outcome>
+   <to-view-id>/index.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+  <!-- Regras de navegação da tela cadastra filme -->
+ <navigation-rule>
+  <from-view-id>/cadastrarFilme.jsp</from-view-id>
+  <navigation-case>
+   <from-outcome>cancelar</from-outcome>
+   <to-view-id>/index.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+   <!-- Regras de navegação da tela cadastra filme -->
+ <navigation-rule>
+  <from-view-id>/consultarFilme.jsp</from-view-id>
+  <navigation-case>
+   <from-outcome>cancelar</from-outcome>
+   <to-view-id>/index.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+   <!-- Regras de navegação da tela cadastra filme -->
+ <navigation-rule>
+  <from-view-id>/alterarFilme.jsp</from-view-id>
+  <navigation-case>
+   <from-outcome>cancelar</from-outcome>
+   <to-view-id>/index.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <!-- Regras de navegação da tela cadastra vendedor -->
+ <navigation-rule>
+  <from-view-id>/cadastrarVendedor.jsp</from-view-id>
+  <navigation-case>
+   <from-outcome>cancelar</from-outcome>
+   <to-view-id>/index.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+   <!-- Regras de navegação da tela cadastra vendedor -->
+ <navigation-rule>
+  <from-view-id>/consultarVendedor.jsp</from-view-id>
+  <navigation-case>
+   <from-outcome>cancelar</from-outcome>
+   <to-view-id>/index.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+   <!-- Regras de navegação da tela cadastra vendedor -->
+ <navigation-rule>
+  <from-view-id>/alterarVendedor.jsp</from-view-id>
+  <navigation-case>
+   <from-outcome>cancelar</from-outcome>
+   <to-view-id>/index.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ 
+</faces-config>
+
+
