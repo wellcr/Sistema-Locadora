@@ -26,108 +26,12 @@ public class LocacaoBacking {
 	private List<Filme> listaFilme;
 	private List<Cliente> listaCliente;
 	private List<Filme> listaFilmesAlugados = new ArrayList<Filme>();
-	private List<Filme> listaFilmesAlugados1;
-	private List<Locacao> listaLocacaoTotal;
-	private List<Locacao> listaLocacao;
 	
 	private String comboCliente;
 	private String comboFilme;
-	private int scrollerPage;
-	private int qtdLinhas;
-	private int paginaTotal;
-	
+
 	private ArrayList filmes;
 	
-	
-	
-	public Filme getFilme() {
-		return filme;
-	}
-
-	public void setFilme(Filme filme) {
-		this.filme = filme;
-	}
-
-	public List<Filme> getListaFilmesAlugados() {
-		return listaFilmesAlugados;
-	}
-
-	public void setListaFilmesAlugados(List<Filme> listaFilmesAlugados) {
-		this.listaFilmesAlugados = listaFilmesAlugados;
-	}
-
-	public List<Filme> getListaFilmesAlugados1() {
-		return listaFilmesAlugados1;
-	}
-
-	public void setListaFilmesAlugados1(List<Filme> listaFilmesAlugados1) {
-		this.listaFilmesAlugados1 = listaFilmesAlugados1;
-	}
-
-	public List<Locacao> getListaLocacaoTotal() {
-		return listaLocacaoTotal;
-	}
-
-	public void setListaLocacaoTotal(List<Locacao> listaLocacaoTotal) {
-		this.listaLocacaoTotal = listaLocacaoTotal;
-	}
-
-	public List<Locacao> getListaLocacao() {
-		return listaLocacao;
-	}
-
-	public void setListaLocacao(List<Locacao> listaLocacao) {
-		this.listaLocacao = listaLocacao;
-	}
-
-	public String getComboCliente() {
-		return comboCliente;
-	}
-
-	public void setComboCliente(String comboCliente) {
-		this.comboCliente = comboCliente;
-	}
-
-	public String getComboFilme() {
-		return comboFilme;
-	}
-
-	public void setComboFilme(String comboFilme) {
-		this.comboFilme = comboFilme;
-	}
-
-	public int getScrollerPage() {
-		return scrollerPage;
-	}
-
-	public void setScrollerPage(int scrollerPage) {
-		this.scrollerPage = scrollerPage;
-	}
-
-	public int getQtdLinhas() {
-		return qtdLinhas;
-	}
-
-	public void setQtdLinhas(int qtdLinhas) {
-		this.qtdLinhas = qtdLinhas;
-	}
-
-	public int getPaginaTotal() {
-		return paginaTotal;
-	}
-
-	public void setPaginaTotal(int paginaTotal) {
-		this.paginaTotal = paginaTotal;
-	}
-
-	public ArrayList getFilmes() {
-		return filmes;
-	}
-
-	public void setFilmes(ArrayList filmes) {
-		this.filmes = filmes;
-	}
-
 	public int getCodigo() {
 		return codigo;
 	}
@@ -176,10 +80,7 @@ public class LocacaoBacking {
 		this.itensFilme = itensFilme;
 	}
 	
-	public String consultarLocacao() {
-		listarLocacao();
-		return "";
-	}
+
 
 	public String efetuarLocacao() {
 		
@@ -315,72 +216,10 @@ public class LocacaoBacking {
 		filmes.add(new SelectItem("0", "Selecione a Locação"));
 		for (Filme filme : listaFilmes) {
 			if(filme.getDisponivel().equals("NÃO")) {
-				listaFilmesAlugados1.add(filme);
+				listaFilmesAlugados.add(filme);
 				filmes.add(new SelectItem(i+"",filme.getNome()));
 				i++;
 			}
 		}
-	}
-	
-	public String retornar() {
-		if (this.scrollerPage>1) {
-			this.scrollerPage--;
-			montarLista();
-			return "atualizar";
-				
-		} else {
-			JSFUtil.addInfoMessage("Não existem mais páginas para voltar");
-			return "";
-		}
-	}
-	
-	public String avancar() {
-		if (this.scrollerPage<this.paginaTotal) {
-			this.scrollerPage++;
-			montarLista();
-			return "atualizar";
-				
-		} else {
-			JSFUtil.addInfoMessage("Não existem mais páginas para avançar");
-			return "";
-		}
-		
-	}
-	
-	public String listarLocacao() {
-		this.scrollerPage = 1;
-		this.qtdLinhas = 10;
-		
-		try {
-			this.listaLocacaoTotal = new LocacaoController().buscarTodos();
-			
-			if (this.listaLocacaoTotal.size() % 10 == 0) {
-				this.paginaTotal = this.listaLocacaoTotal.size() / 10;			
-			} else {
-				this.paginaTotal = (this.listaLocacaoTotal.size() /10 ) + 1;
-			}
-			montarLista();
-		} catch (Exception e) {
-			JSFUtil.addInfoMessage("Erro ao listar os Locações");
-		}
-		return "";
-	}
-	
-	public void montarLista() {
-		listaLocacao = new ArrayList<Locacao>();
-		int contador = 0;
-		int contLocacao = 0;
-		for (Locacao locacao : listaLocacaoTotal) {
-			contLocacao++;
-			if(contador == this.qtdLinhas) 
-				break;
-			if ((contLocacao <= (this.qtdLinhas*this.scrollerPage))&&
-					(contLocacao> (this.qtdLinhas*(this.scrollerPage-1)))) {
-				listaLocacao.add(locacao);
-				contador++;
-				
-			}
-		}
-
 	}
 }

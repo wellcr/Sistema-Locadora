@@ -51,7 +51,10 @@
 						<rich:menuItem id="menu7" value="Efetuar Locação" action="#{locacaoBacking.efetuarLocacao}">
 						</rich:menuItem>
 						
-						<rich:menuItem id="menu8" value="Consultar Locação">
+						<rich:menuItem id="menu8" value="Consultar Locação" action="#{locacaoBacking.consultarLocacao}">
+						</rich:menuItem>
+						
+						<rich:menuItem id="menu9" value="Efetuar devolução" action="#{locacaoBacking.efetuarDevolucao}">
 						</rich:menuItem>
 					
 					</rich:dropDownMenu>

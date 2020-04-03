@@ -4,11 +4,9 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
 import br.com.foursys.locadora.bean.Filme;
-import br.com.foursys.locadora.bean.Vendedor;
 import br.com.foursys.locadora.controller.FilmeController;
 import br.com.foursys.locadora.util.JSFUtil;
 
@@ -24,6 +22,7 @@ public class FilmeBacking {
 
 	private Filme filmeSelecionado = new Filme();
 	private List<Filme> listaFilme;
+	static List<Filme> listaFilmeDisponivel = new ArrayList<Filme>();
 	private String aux = "";
 	
 	private int scrollerPage;
@@ -113,6 +112,14 @@ public class FilmeBacking {
 
 	public void setListaFilme(List<Filme> listaFilme) {
 		this.listaFilme = listaFilme;
+	}
+
+	public List<Filme> getListaFilmeDisponivel() {
+		return listaFilmeDisponivel;
+	}
+
+	public void setListaFilmeDisponivel(List<Filme> listaFilmeDisponivel) {
+		this.listaFilmeDisponivel = listaFilmeDisponivel;
 	}
 
 	public String cadastraFilme() {
@@ -305,10 +312,7 @@ public class FilmeBacking {
 		return formatoMoeda.format(filme.getValor());
 	}
 	
-	public String valorTabelaV(Vendedor vendedor) {
-		NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance();
-		return formatoMoeda.format(vendedor.getSalario());
-	}
+	
 	
 	public String listarFilme() {
 		this.scrollerPage = 1;
@@ -348,22 +352,24 @@ public class FilmeBacking {
 		
 	}
 	
-	public void popularFilme(ValueChangeEvent e) {
-		nome = e.getNewValue().toString();  
-	}
+	
 	
 	public List<String> carregarFilmesCombo() {
 		prepararFilmes(); 
 		return filmes;
 	}
+	
 
 	private void prepararFilmes(){
 		filmes = new ArrayList();
+		int i = 1;
 		List<Filme> listaFilmes = new FilmeController().buscarTodos(); 
 		filmes.add(new SelectItem("0", "Selecione um Filme"));
 		for (Filme filme : listaFilmes) {
 			if(filme.getDisponivel().equals("SIM")) {
-				filmes.add(new SelectItem(filme.getNome(),filme.getNome()));
+				listaFilmeDisponivel.add(filme);
+				filmes.add(new SelectItem(i+"",filme.getNome()));
+				i++;
 			}
 		}
 	}

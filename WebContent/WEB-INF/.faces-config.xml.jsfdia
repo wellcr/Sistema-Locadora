@@ -80,6 +80,15 @@
     TITLE="#{vendedorBacking.alteraVendedor}:[any]" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::9" SHAPE="32,1025,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::9" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID=":#{locacaoBacking.efetuarLocacao}:#efetuarLocacao.jsp"
+    NAME="output" PATH="/efetuarLocacao.jsp"
+    TARGET="rules:#efetuarLocacao.jsp"
+    TITLE="#{locacaoBacking.efetuarLocacao}:[any]" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#cadastrarCliente.jsp"
   PATH="/cadastrarCliente.jsp" SHAPE="240,33,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#cadastrarCliente.jsp:0" NAME="item"
@@ -152,21 +161,46 @@
     PATH="/index.jsp" TARGET="rules:#index.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#index.jsp" PATH="/index.jsp"
-  SHAPE="512,17,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules::9" SHAPE="32,1025,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules::9" NAME="item" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT
-    ID=":#{locacaoBacking.efetuarLocacao}:#efetuarLocacao.jsp"
-    NAME="output" PATH="/efetuarLocacao.jsp"
-    TARGET="rules:#efetuarLocacao.jsp"
-    TITLE="#{locacaoBacking.efetuarLocacao}:[any]" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
- </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#efetuarLocacao.jsp"
   PATH="/efetuarLocacao.jsp" SHAPE="240,1041,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#efetuarLocacao.jsp:0" NAME="item"
    PATH="/efetuarLocacao.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="sair::#index.jsp" NAME="output"
+    PATH="/index.jsp" TARGET="rules:#index.jsp" TITLE="sair" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#index.jsp" PATH="/index.jsp"
+  SHAPE="512,17,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::10" SHAPE="32,1137,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::10" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID=":#{locacaoBacking.consultarLocacao}:#consultarLocacao.jsp"
+    NAME="output" PATH="/consultarLocacao.jsp"
+    TARGET="rules:#consultarLocacao.jsp"
+    TITLE="#{locacaoBacking.consultarLocacao}:[any]" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#efetuarDevolucao.jsp"
+  PATH="/efetuarDevolucao.jsp" SHAPE="240,1153,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#efetuarDevolucao.jsp:0" NAME="item"
+   PATH="/efetuarDevolucao.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="sair::#index.jsp" NAME="output"
+    PATH="/index.jsp" TARGET="rules:#index.jsp" TITLE="sair" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::11" SHAPE="32,1249,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::11" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID=":#{locacaoBacking.efetuarDevolucao}:#efetuarDevolucao.jsp"
+    NAME="output" PATH="/efetuarDevolucao.jsp"
+    TARGET="rules:#efetuarDevolucao.jsp"
+    TITLE="#{locacaoBacking.efetuarDevolucao}:[any]" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#consultarLocacao.jsp"
+  PATH="/consultarLocacao.jsp" SHAPE="240,1377,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#consultarLocacao.jsp:0" NAME="item"
+   PATH="/consultarLocacao.jsp" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="sair::#index.jsp" NAME="output"
     PATH="/index.jsp" TARGET="rules:#index.jsp" TITLE="sair" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>

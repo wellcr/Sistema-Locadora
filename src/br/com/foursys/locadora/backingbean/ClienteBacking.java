@@ -448,9 +448,7 @@ public class ClienteBacking {
 		
 	}
 	
-	public void popularCliente(ValueChangeEvent e) {
-		nome = e.getNewValue().toString();  
-	}
+	
 	
 	public List<String> carregarClientesCombo() {
 		prepararClientes();

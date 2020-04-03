@@ -57,7 +57,7 @@
 						<h:outputText value="#{vendedor.areaVenda}"/>
 					</rich:column>
 					<rich:column>
-						<h:outputText value="#{filmeBacking.valorTabelaV(vendedor)}"/>
+						<h:outputText value="#{vendedorBacking.valorTabela(vendedor)}"/>
 					</rich:column>
 					<rich:column>
 						<h:commandLink value="Excluir" action="#{vendedorBacking.excluir}">

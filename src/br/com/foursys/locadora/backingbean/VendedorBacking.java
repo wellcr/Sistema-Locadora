@@ -4,7 +4,6 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.foursys.locadora.bean.Filme;
 import br.com.foursys.locadora.bean.Vendedor;
 import br.com.foursys.locadora.controller.VendedorController;
 import br.com.foursys.locadora.util.JSFUtil;
@@ -349,9 +348,10 @@ public class VendedorBacking {
 		
 		
 	}
+
 	
-	public String valorTabela(Filme filme) {
+	public String valorTabela(Vendedor vendedor) {
 		NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance();
-		return formatoMoeda.format(filme.getValor());
+		return formatoMoeda.format(vendedor.getSalario());
 	}
 }

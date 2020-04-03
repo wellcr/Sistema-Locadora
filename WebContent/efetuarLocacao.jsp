@@ -21,11 +21,13 @@
 
 
 			<h:panelGrid columns="2">
-				<h:selectOneMenu value="#{clienteBacking.nome}"
+				<h:selectOneMenu 
+					value="#{clienteBacking.nome}"
+					id="comboCliente"
 					required="true" onchange="submit()"
-					valueChangeListener="#{clienteBacking.popularCliente}">
-					
+					valueChangeListener="#{locacaoBacking.popularCliente}">
 					<f:selectItems value="#{clienteBacking.carregarClientesCombo()}" />
+					
 				</h:selectOneMenu>
 
 			</h:panelGrid>
@@ -33,8 +35,9 @@
 
 			<h:panelGrid columns="2">
 				<h:selectOneMenu value="#{filmeBacking.nome}"
+					id="comboFilme"
 					required="true" onchange="submit()"
-					valueChangeListener="#{filmeBacking.popularFilme}">
+					valueChangeListener="#{locacaoBacking.popularFilme}">
 					<f:selectItems value="#{filmeBacking.carregarFilmesCombo()}" />
 				</h:selectOneMenu>
 
@@ -42,14 +45,19 @@
 
 			<h:panelGrid columns="2">
 				<h:outputText value="Nome do Cliente: "/>
-				<h:outputText id="nomeCliente" value="#{clienteBacking.nome}" />
+				<h:outputText id="nomeCliente" value="#{locacaoBacking.nomeCliente}" />
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
 				<h:outputText value="Nome do Filme: " />
-				<h:outputText id="nomeFilme" value="#{filmeBacking.nome}" />
+				<h:outputText id="nomeFilme" value="#{locacaoBacking.nomeFilme}" />
 			</h:panelGrid>
 
+			<h:panelGrid columns="2">
+				<h:outputText value="Valor da Locação: " />
+				<h:outputText id="valorFilme" value="#{locacaoBacking.valorFilme}" />
+			</h:panelGrid>
+			
 			<h:panelGrid columns="3">
 				<h:commandButton value="Salvar" action="#{locacaoBacking.salvar}" />
 				<h:commandButton value="Cancelar"
