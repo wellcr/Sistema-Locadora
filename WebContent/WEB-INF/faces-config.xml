@@ -179,7 +179,21 @@
    <redirect/>
   </navigation-case>
  </navigation-rule>
+ 	<!-- Regras de navegação da tela Locacação -->
+ <navigation-rule>
+  <from-view-id>/efetuarLocacao.jsp</from-view-id>
+  <navigation-case>
+   <from-outcome>sair</from-outcome>
+   <to-view-id>/index.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ 
  
 </faces-config>
+
+
+ 
+
 
 

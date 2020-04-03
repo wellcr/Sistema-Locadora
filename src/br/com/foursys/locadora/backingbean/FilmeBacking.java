@@ -4,6 +4,9 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.event.ValueChangeEvent;
+import javax.faces.model.SelectItem;
+
 import br.com.foursys.locadora.bean.Filme;
 import br.com.foursys.locadora.bean.Vendedor;
 import br.com.foursys.locadora.controller.FilmeController;
@@ -27,6 +30,8 @@ public class FilmeBacking {
 	private int qtdLinhas;
 	private int paginaTotal;
 	private List<Filme> listaFilmeTotal;
+	
+	private ArrayList filmes;
 	
 	public String getAux() {
 		return aux;
@@ -341,5 +346,25 @@ public class FilmeBacking {
 		}
 		
 		
+	}
+	
+	public void popularFilme(ValueChangeEvent e) {
+		nome = e.getNewValue().toString();  
+	}
+	
+	public List<String> carregarFilmesCombo() {
+		prepararFilmes(); 
+		return filmes;
+	}
+
+	private void prepararFilmes(){
+		filmes = new ArrayList();
+		List<Filme> listaFilmes = new FilmeController().buscarTodos(); 
+		filmes.add(new SelectItem("0", "Selecione um Filme"));
+		for (Filme filme : listaFilmes) {
+			if(filme.getDisponivel().equals("SIM")) {
+				filmes.add(new SelectItem(filme.getNome(),filme.getNome()));
+			}
+		}
 	}
 }

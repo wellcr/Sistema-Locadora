@@ -7,6 +7,8 @@ function masc_moeda(objeto) {
 	objeto.value = v;
 }
 
+
+
 function masc_numero(objeto){
 	var numero = "";
 	var padrao = /\D/g;

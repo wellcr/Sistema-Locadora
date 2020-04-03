@@ -20,5 +20,6 @@
 		<mapping class="br.com.foursys.locadora.bean.Cliente" />
 		<mapping class="br.com.foursys.locadora.bean.Filme" />
 		<mapping class="br.com.foursys.locadora.bean.Vendedor" />
+		<mapping class="br.com.foursys.locadora.bean.Locacao" />
 	</session-factory>
 </hibernate-configuration>

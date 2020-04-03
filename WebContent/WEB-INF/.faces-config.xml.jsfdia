@@ -164,5 +164,11 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#efetuarLocacao.jsp"
-  PATH="/efetuarLocacao.jsp" SHAPE="240,1041,0,0" model-entity="JSFProcessGroup"/>
+  PATH="/efetuarLocacao.jsp" SHAPE="240,1041,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#efetuarLocacao.jsp:0" NAME="item"
+   PATH="/efetuarLocacao.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="sair::#index.jsp" NAME="output"
+    PATH="/index.jsp" TARGET="rules:#index.jsp" TITLE="sair" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>

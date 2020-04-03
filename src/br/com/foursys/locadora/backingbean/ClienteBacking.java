@@ -3,6 +3,9 @@ package br.com.foursys.locadora.backingbean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.event.ValueChangeEvent;
+import javax.faces.model.SelectItem;
+
 import br.com.foursys.locadora.bean.Cliente;
 import br.com.foursys.locadora.bean.Filme;
 import br.com.foursys.locadora.bean.Cliente;
@@ -36,7 +39,7 @@ public class ClienteBacking {
 	private int paginaTotal;
 	private List<Cliente> listaClienteTotal;
 	
-	
+	private ArrayList clientes;
 	
 	public int getCodigo() {
 		return codigo;
@@ -443,5 +446,24 @@ public class ClienteBacking {
 		}
 		
 		
+	}
+	
+	public void popularCliente(ValueChangeEvent e) {
+		nome = e.getNewValue().toString();  
+	}
+	
+	public List<String> carregarClientesCombo() {
+		prepararClientes();
+		return clientes;
+	}
+	
+	
+	private void prepararClientes(){
+		clientes = new ArrayList();
+		List<Cliente> listaClientes = new ClienteController().buscarTodos(); 
+		clientes.add(new SelectItem("0", "Selecione um Cliente"));
+		for (Cliente cliente : listaClientes) {
+			clientes.add(new SelectItem(cliente.getNome(), cliente.getNome()));
+		}
 	}
 }
