@@ -7,7 +7,23 @@ function masc_moeda(objeto) {
 	objeto.value = v;
 }
 
+function masc_letras(objeto){
+	var letra = "";
+	
+	letra = objeto.value.replace(/\d/g,"")
+	objeto.value = letra;
+}
 
+function aNumerico(objeto){
+	var letra = "";
+	
+	letra = objeto.value.replace(".","").replace(",","").replace("!","").replace("@","").replace("#","")
+	.replace("$","").replace("%","").replace("&","").replace("*","").replace("~","").replace("^","").replace("´","")
+	.replace("'","").replace("/","").replace(")","").replace("]","").replace("[","").replace("{","").replace("}","")
+	.replace("(","").replace("?","").replace("´","").replace(";","")
+	objeto.value = letra;
+
+}
 
 function masc_numero(objeto){
 	var numero = "";

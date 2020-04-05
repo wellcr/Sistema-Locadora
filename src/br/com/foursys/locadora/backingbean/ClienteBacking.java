@@ -1,10 +1,12 @@
 package br.com.foursys.locadora.backingbean;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
+import javax.script.ScriptException;
 
 import br.com.foursys.locadora.bean.Cliente;
 import br.com.foursys.locadora.bean.Filme;
@@ -12,6 +14,7 @@ import br.com.foursys.locadora.bean.Cliente;
 import br.com.foursys.locadora.controller.ClienteController;
 import br.com.foursys.locadora.controller.ClienteController;
 import br.com.foursys.locadora.util.JSFUtil;
+import br.com.foursys.locadora.util.Valida;
 
 public class ClienteBacking {
 	
@@ -181,7 +184,7 @@ public class ClienteBacking {
 		return "cancelar";
 	}
 
-	public String salvar() {
+	public String salvar() throws NoSuchMethodException, FileNotFoundException, ScriptException {
 		Cliente cliente = new Cliente();
 		if(validarDados()) {
 			cliente.setNome(nome);
@@ -229,17 +232,20 @@ public class ClienteBacking {
 		idade = 0;
 	}
 	
-	public boolean validarDados() {
+	public boolean validarDados() throws NoSuchMethodException, FileNotFoundException, ScriptException {
 		if(nome.trim().equals("")) {
 			JSFUtil.addInfoMessage("Informe o nome, campo obrigatório!");
 			return false;
 			
 		}
+		
+		
 		if(logradouro.trim().equals("")) {
 			JSFUtil.addInfoMessage("Informe o logradouro, campo obrigatório!");
 			return false;
 			
 		}
+		
 		if(numero == 0) {
 			JSFUtil.addInfoMessage("Informe o numero, campo obrigatório!");
 			return false;
@@ -248,8 +254,9 @@ public class ClienteBacking {
 		if(bairro.trim().equals("")) {
 			JSFUtil.addInfoMessage("Informe o bairro, campo obrigatório!");
 			return false;
-			
 		}
+
+		
 		if(cidade.trim().equals("")) {
 			JSFUtil.addInfoMessage("Informe o cidade, campo obrigatório!");
 			return false;
@@ -270,16 +277,31 @@ public class ClienteBacking {
 			return false;
 			
 		}
-		if(cpf.trim().equals("")) {
-			JSFUtil.addInfoMessage("Informe o CPF, campo obrigatório!");
+		if(telefone.equals("(00) 0000-0000")){
+			JSFUtil.addInfoMessage("Telefone inválido!");
 			return false;
 			
 		}
+		if(cpf.trim().equals("")) {
+			JSFUtil.addInfoMessage("Informe o CPF, campo obrigatório!");
+			return false;	
+		}
+		if(!Valida.validaCpf(cpf)) {
+			JSFUtil.addInfoMessage("CPF inválido!");
+			return false;
+		}
+		
 		if(rg.trim().equals("")) {
 			JSFUtil.addInfoMessage("Informe o RG, campo obrigatório!");
 			return false;
 			
 		}
+		
+		if(!Valida.validaRg(rg)) {
+			JSFUtil.addInfoMessage("RG inválido!");
+			return false;
+		}
+		
 		if(sexo.trim().equals("")) {
 			JSFUtil.addInfoMessage("Informe o sexo, campo obrigatório!");
 			return false;
@@ -290,6 +312,11 @@ public class ClienteBacking {
 			return false;
 			
 		}
+		if(!Valida.validaData(dataNascimento)) {
+			JSFUtil.addInfoMessage("Data inválida!");
+			return false;
+		}
+		
 		if(idade == 0) {
 			JSFUtil.addInfoMessage("Informe a idade, campo obrigatório!");
 			return false;
@@ -351,7 +378,7 @@ public class ClienteBacking {
 		return "alterar";
 	}
 	
-	public String alterar() {
+	public String alterar() throws NoSuchMethodException, FileNotFoundException, ScriptException {
 		if (validarDados()) {
 			clienteSelecionado.setCodigo(codigo);
 			clienteSelecionado.setNome(nome);

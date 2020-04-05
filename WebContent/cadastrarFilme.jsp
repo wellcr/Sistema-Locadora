@@ -26,9 +26,11 @@
 			
 			<h:panelGrid columns="4">
 				<h:outputText value="Nome: " />
-				<h:inputText value="#{filmeBacking.nome}" maxlength="50" size="50" />
+				<h:inputText value="#{filmeBacking.nome}" maxlength="50" size="50"  
+								onkeyup="aNumerico(this)"/>
 				<h:outputText value="Genero: " />
-				<h:inputText value="#{filmeBacking.genero}" maxlength="50" size="20" />
+				<h:inputText value="#{filmeBacking.genero}" maxlength="50" size="20"  
+								onkeyup="masc_letras(this)" />
 			</h:panelGrid>
 			
 			<h:panelGrid columns="5">

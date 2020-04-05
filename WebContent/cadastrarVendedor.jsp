@@ -26,17 +26,21 @@
 			
 			<h:panelGrid columns="5">
 				<h:outputText value="Nome: " />
-				<h:inputText value="#{vendedorBacking.nome}" maxlength="50" size="50" />
+				<h:inputText value="#{vendedorBacking.nome}" maxlength="50" size="50"   
+								onkeyup="masc_letras(this)" />
 				<div style="width: 1px"/>
 				<h:outputText value=" Area de Venda: " />
-				<h:inputText value="#{vendedorBacking.areaVenda}" maxlength="50" size="20" />
+				<h:inputText value="#{vendedorBacking.areaVenda}" maxlength="50" size="20" 
+								onkeyup="aNumerico(this)"/>
 			</h:panelGrid>
 			
 			<h:panelGrid columns="6">
 				<h:outputText value="Cidade:" />
-				<h:inputText value="#{vendedorBacking.cidade}" maxlength="10" size="20"/>
+				<h:inputText value="#{vendedorBacking.cidade}" maxlength="10" size="20"  
+								onkeyup="masc_letras(this)" />
 				<h:outputText value="Estado:" />
-				<h:inputText value="#{vendedorBacking.estado}" maxlength="10" size="20"/>
+				<h:inputText value="#{vendedorBacking.estado}" maxlength="10" size="20"  
+								onkeyup="masc_letras(this)" />
 				<h:outputText value="Sexo: "/>
 				<h:selectOneRadio value="#{vendedorBacking.sexo}">
 					<f:selectItem itemValue="F" itemLabel="Feminino"/>

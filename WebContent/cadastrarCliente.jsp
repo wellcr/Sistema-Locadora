@@ -27,12 +27,14 @@
 			
 			<h:panelGrid columns="2">
 				<h:outputText value="Nome: " />
-				<h:inputText value="#{clienteBacking.nome}" maxlength="50" size="80" />
+				<h:inputText value="#{clienteBacking.nome}" maxlength="50" size="80" 
+								onkeyup="masc_letras(this)" />
 			</h:panelGrid>
 			
 			<h:panelGrid columns="4">
 				<h:outputText value="Logradouro: " />
-				<h:inputText value="#{clienteBacking.logradouro}" maxlength="51" size="56" />
+				<h:inputText value="#{clienteBacking.logradouro}" maxlength="51" size="56" 
+								onkeyup="aNumerico(this)"/>
 				<h:outputText value="Número: " />
 				<h:inputText value="#{clienteBacking.numero}" maxlength="50" size="8" 
 								onkeyup="masc_numero(this)"/>
@@ -40,16 +42,19 @@
 			
 			<h:panelGrid columns="5">
 				<h:outputText value="Bairro: " />
-				<h:inputText value="#{clienteBacking.bairro}" maxlength="50" size="25" />
+				<h:inputText value="#{clienteBacking.bairro}" maxlength="50" size="25" 
+								onkeyup="aNumerico(this)"/>
 				<div style="width: 85px"/>
 				<h:outputText value="Cidade: " />
-				<h:inputText value="#{clienteBacking.cidade}" maxlength="50" size="25"/>
+				<h:inputText value="#{clienteBacking.cidade}" maxlength="50" size="25" 
+								onkeyup="masc_letras(this)" />
 			</h:panelGrid>
 			
 			
 			<h:panelGrid columns="5">
 				<h:outputText value="Estado: " />
-				<h:inputText value="#{clienteBacking.estado}" maxlength="50" size="25"/>
+				<h:inputText value="#{clienteBacking.estado}" maxlength="50" size="25" 
+								onkeyup="masc_letras(this)" />
 				<div style="width: 101px"/>
 				<h:outputText value="CEP: " />
 				<h:inputText value="#{clienteBacking.cep}" maxlength="10" size="25" 
@@ -84,7 +89,7 @@
 								onkeyup="masc_data(this)"/>
 				<div style="width: 194px"/>
 				<h:outputText value="Idade: " />
-				<h:inputText value="#{clienteBacking.idade}" maxlength="50" size="8" 
+				<h:inputText value="#{clienteBacking.idade}" maxlength="3" size="8" 
 								onkeyup="masc_numero(this)"/>
 			</h:panelGrid>
 			
