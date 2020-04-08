@@ -24,10 +24,15 @@ public class VendedorBacking {
 	private List<Vendedor> listaAux;
 	
 	private int scrollerPage;
-	private int qtdLinhas;
-	private int paginaTotal;
-	private List<Vendedor> listaVendedorTotal;
 	
+	public int getScrollerPage() {
+		return scrollerPage;
+	}
+
+	public void setScrollerPage(int scrollerPage) {
+		this.scrollerPage = scrollerPage;
+	}
+
 	public int getCodigo() {
 		return codigo;
 	}
@@ -215,17 +220,10 @@ public class VendedorBacking {
 	
 	public String pesquisar() {
 		this.scrollerPage = 1;
-		this.qtdLinhas = 10;
 		
 		try {
-			this.listaVendedorTotal = new VendedorController().buscarNome(nome);
+			this.listaVendedor = new VendedorController().buscarNome(nome);
 			
-			if (this.listaVendedorTotal.size() % 10 == 0) {
-				this.paginaTotal = this.listaVendedorTotal.size() / 10;			
-			} else {
-				this.paginaTotal = (this.listaVendedorTotal.size() /10 ) + 1;
-			}
-			montarLista();
 		} catch (Exception e) {
 			JSFUtil.addInfoMessage("Erro ao listar os Vendedores");
 		}
@@ -286,67 +284,17 @@ public class VendedorBacking {
 		return "";
 	}
 	
-	public String retornar() {
-		if (this.scrollerPage>1) {
-			this.scrollerPage--;
-			montarLista();
-			return "atualizar";
-				
-		} else {
-			JSFUtil.addInfoMessage("Não existem mais páginas para voltar");
-			return "";
-		}
-	}
-	
-	public String avancar() {
-		if (this.scrollerPage<this.paginaTotal) {
-			this.scrollerPage++;
-			montarLista();
-			return "atualizar";
-				
-		} else {
-			JSFUtil.addInfoMessage("Não existem mais páginas para avançar");
-			return "";
-		}
-		
-	}
 	
 	public String listarVendedor() {
 		this.scrollerPage = 1;
-		this.qtdLinhas = 10;
 		
 		try {
-			this.listaVendedorTotal = new VendedorController().buscarTodos();
+			this.listaVendedor = new VendedorController().buscarTodos();
 			
-			if (this.listaVendedorTotal.size() % 10 == 0) {
-				this.paginaTotal = this.listaVendedorTotal.size() / 10;			
-			} else {
-				this.paginaTotal = (this.listaVendedorTotal.size() /10 ) + 1;
-			}
-			montarLista();
 		} catch (Exception e) {
 			JSFUtil.addInfoMessage("Erro ao listar os Vendedores");
 		}
 		return "";
-	}
-	
-	public void montarLista() {
-		listaVendedor = new ArrayList<Vendedor>();
-		int contador = 0;
-		int contVendedor = 0;
-		for (Vendedor vendedor : listaVendedorTotal) {
-			contVendedor++;
-			if(contador == this.qtdLinhas) 
-				break;
-			if ((contVendedor <= (this.qtdLinhas*this.scrollerPage))&&
-					(contVendedor> (this.qtdLinhas*(this.scrollerPage-1)))) {
-				listaVendedor.add(vendedor);
-				contador++;
-				
-			}
-		}
-		
-		
 	}
 
 	

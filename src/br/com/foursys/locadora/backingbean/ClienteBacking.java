@@ -4,14 +4,10 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.script.ScriptException;
 
 import br.com.foursys.locadora.bean.Cliente;
-import br.com.foursys.locadora.bean.Filme;
-import br.com.foursys.locadora.bean.Cliente;
-import br.com.foursys.locadora.controller.ClienteController;
 import br.com.foursys.locadora.controller.ClienteController;
 import br.com.foursys.locadora.util.JSFUtil;
 import br.com.foursys.locadora.util.Valida;
@@ -38,12 +34,23 @@ public class ClienteBacking {
 
 	
 	private int scrollerPage;
-	private int qtdLinhas;
-	private int paginaTotal;
-	private List<Cliente> listaClienteTotal;
-	
+
 	private ArrayList clientes;
 	
+	
+	
+	public int getScrollerPage() {
+		return scrollerPage;
+	}
+	
+	
+	
+	public void setScrollerPage(int scrollerPage) {
+		this.scrollerPage = scrollerPage;
+	}
+
+
+
 	public int getCodigo() {
 		return codigo;
 	}
@@ -328,17 +335,10 @@ public class ClienteBacking {
 	
 	public String pesquisar() {
 		this.scrollerPage = 1;
-		this.qtdLinhas = 10;
 		
 		try {
-			this.listaClienteTotal = new ClienteController().buscarNome(nome);
+			this.listaCliente = new ClienteController().buscarNome(nome);
 			
-			if (this.listaClienteTotal.size() % 10 == 0) {
-				this.paginaTotal = this.listaClienteTotal.size() / 10;			
-			} else {
-				this.paginaTotal = (this.listaClienteTotal.size() /10 ) + 1;
-			}
-			montarLista();
 		} catch (Exception e) {
 			JSFUtil.addInfoMessage("Erro ao listar os Clientees");
 		}
@@ -412,68 +412,18 @@ public class ClienteBacking {
 		return "";
 	}
 	
-	public String retornar() {
-		if (this.scrollerPage>1) {
-			this.scrollerPage--;
-			montarLista();
-			return "atualizar";
-				
-		} else {
-			JSFUtil.addInfoMessage("Não existem mais páginas para voltar");
-			return "";
-		}
-	}
-	
-	public String avancar() {
-		if (this.scrollerPage<this.paginaTotal) {
-			this.scrollerPage++;
-			montarLista();
-			return "atualizar";
-				
-		} else {
-			JSFUtil.addInfoMessage("Não existem mais páginas para avançar");
-			return "";
-		}
-		
-	}
-	
 	public String listarCliente() {
 		this.scrollerPage = 1;
-		this.qtdLinhas = 10;
 		
 		try {
-			this.listaClienteTotal = new ClienteController().buscarTodos();
+			this.listaCliente = new ClienteController().buscarTodos();
 			
-			if (this.listaClienteTotal.size() % 10 == 0) {
-				this.paginaTotal = this.listaClienteTotal.size() / 10;			
-			} else {
-				this.paginaTotal = (this.listaClienteTotal.size() /10 ) + 1;
-			}
-			montarLista();
 		} catch (Exception e) {
 			JSFUtil.addInfoMessage("Erro ao listar os Clientees");
 		}
 		return "";
 	}
 	
-	public void montarLista() {
-		listaCliente = new ArrayList<Cliente>();
-		int contador = 0;
-		int contCliente = 0;
-		for (Cliente cliente : listaClienteTotal) {
-			contCliente++;
-			if(contador == this.qtdLinhas) 
-				break;
-			if ((contCliente <= (this.qtdLinhas*this.scrollerPage))&&
-					(contCliente> (this.qtdLinhas*(this.scrollerPage-1)))) {
-				listaCliente.add(cliente);
-				contador++;
-				
-			}
-		}
-		
-		
-	}
 	
 	
 	
@@ -486,7 +436,7 @@ public class ClienteBacking {
 	private void prepararClientes(){
 		clientes = new ArrayList();
 		List<Cliente> listaClientes = new ClienteController().buscarTodos(); 
-		clientes.add(new SelectItem("0", "Selecione um Cliente"));
+		clientes.add(new SelectItem("Selecione um cliente", "Selecione um cliente"));
 		for (Cliente cliente : listaClientes) {
 			clientes.add(new SelectItem(cliente.getNome(), cliente.getNome()));
 		}

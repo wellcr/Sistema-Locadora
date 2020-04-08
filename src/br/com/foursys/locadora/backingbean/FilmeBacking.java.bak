@@ -229,7 +229,7 @@ public class FilmeBacking {
 		try {
 			this.listaFilme = new FilmeController().buscarNome(nome);
 		} catch (Exception e) {
-			JSFUtil.addInfoMessage("Erro ao listar os Filmes");
+			JSFUtil.addInfoMessage("Erro ao listar os Filmees");
 		}
 		return "";
 	}
@@ -286,6 +286,31 @@ public class FilmeBacking {
 		return "";
 	}
 	
+	public String retornar() {
+		if (this.scrollerPage>1) {
+			this.scrollerPage--;
+			montarLista();
+			return "atualizar";
+				
+		} else {
+			JSFUtil.addInfoMessage("Não existem mais páginas para voltar");
+			return "";
+		}
+	}
+	
+	public String avancar() {
+		if (this.scrollerPage<this.paginaTotal) {
+			this.scrollerPage++;
+			montarLista();
+			return "atualizar";
+				
+		} else {
+			JSFUtil.addInfoMessage("Não existem mais páginas para avançar");
+			return "";
+		}
+		
+	}
+	
 	public String valorTabela(Filme filme) {
 		NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance();
 		return formatoMoeda.format(filme.getValor());
@@ -295,17 +320,43 @@ public class FilmeBacking {
 	
 	public String listarFilme() {
 		this.scrollerPage = 1;
+		this.qtdLinhas = 10;
 		
 		try {
-			this.listaFilme = new FilmeController().buscarTodos();
+			this.listaFilmeTotal = new FilmeController().buscarTodos();
 			
+			if (this.listaFilmeTotal.size() % 10 == 0) {
+				this.paginaTotal = this.listaFilmeTotal.size() / 10;			
+			} else {
+				this.paginaTotal = (this.listaFilmeTotal.size() /10 ) + 1;
+			}
+			montarLista();
 		} catch (Exception e) {
 			JSFUtil.addInfoMessage("Erro ao listar os Filmees");
 		}
 		return "";
 	}
 	
-
+	public void montarLista() {
+		listaFilme = new ArrayList<Filme>();
+		int contador = 0;
+		int contFilme = 0;
+		for (Filme filme : listaFilmeTotal) {
+			contFilme++;
+			if(contador == this.qtdLinhas) 
+				break;
+			if ((contFilme <= (this.qtdLinhas*this.scrollerPage))&&
+					(contFilme> (this.qtdLinhas*(this.scrollerPage-1)))) {
+				listaFilme.add(filme);
+				contador++;
+				
+			}
+		}
+		
+		
+	}
+	
+	
 	
 	public List<String> carregarFilmesCombo() {
 		prepararFilmes(); 

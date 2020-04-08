@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import br.com.foursys.locadora.bean.Cliente;
 import br.com.foursys.locadora.dao.ClienteDAO;
+import br.com.foursys.locadora.vo.ClienteVO;
 
 public class ClienteController {
 	
@@ -49,5 +50,28 @@ public class ClienteController {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public ArrayList<ClienteVO> retornaClientes(){
+		ArrayList<ClienteVO> listaVO = new ArrayList<ClienteVO>();
+		
+		
+		try {
+			ArrayList<Cliente> listaCliente = new ClienteDAO().buscarTodos();
+			for (Cliente cliente : listaCliente) {
+				ClienteVO vo = new ClienteVO();
+				vo.setNome(cliente.getNome());
+				vo.setTelefone(cliente.getTelefone());
+				vo.setDataNascimento(cliente.getDataNascimento());
+				vo.setCidade(cliente.getCidade());
+				listaVO.add(vo);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	
+		return listaVO;
 	}
 }

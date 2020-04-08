@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import br.com.foursys.locadora.bean.Vendedor;
 import br.com.foursys.locadora.dao.VendedorDAO;
+import br.com.foursys.locadora.vo.VendedorVO;
 
 public class VendedorController {
 	
@@ -50,4 +51,27 @@ public class VendedorController {
 		}
 		
 	}
+	
+	public ArrayList<VendedorVO> retornaVendedores(){
+		ArrayList<VendedorVO> listaVO = new ArrayList<VendedorVO>();
+		
+		
+		try {
+			ArrayList<Vendedor> listaVendedor = new VendedorDAO().buscarTodos();
+			for (Vendedor vendedor : listaVendedor) {
+				VendedorVO vo = new VendedorVO();
+				vo.setNome(vendedor.getNome());
+				vo.setAreaVenda(vendedor.getAreaVenda());
+				vo.setSalario("R$"+vendedor.getSalario());
+				listaVO.add(vo);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	
+		return listaVO;
+	}
+	
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import br.com.foursys.locadora.bean.Locacao;
 import br.com.foursys.locadora.dao.LocacaoDAO;
+import br.com.foursys.locadora.vo.LocacaoVO;
 
 public class LocacaoController {
 
@@ -49,5 +50,33 @@ public class LocacaoController {
 			e.printStackTrace();
 		}
 		
+	}
+	/**
+	 * Metodo para criar uma lista de filmes para exibir no relatório
+	 * 
+	 * @return ArrayList de filmes
+	 * esse metodo será retirado futuramento
+	 */
+	
+	public ArrayList<LocacaoVO> retornaLocacao(){
+		ArrayList<LocacaoVO> listaVO = new ArrayList<LocacaoVO>();
+		
+		
+		try {
+			ArrayList<Locacao> listaLocacao = new LocacaoDAO().buscarTodos();
+			for (Locacao locacao : listaLocacao) {
+				LocacaoVO vo = new LocacaoVO();
+				vo.setCliente(locacao.getNomeCliente());
+				vo.setFilme(locacao.getNomeFilme());
+				vo.setDataLocacao(locacao.getData());;
+				listaVO.add(vo);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	
+		return listaVO;
 	}
 }
