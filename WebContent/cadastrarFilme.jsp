@@ -6,22 +6,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" contet ="text/html; charset=ISO-8859-1">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:8080/Sistema_Locadora/images/favicon-16x16.png"/>
+<link href="css/config.css" rel="stylesheet"/>
+<meta http-equiv="Content-Type" content ="text/html; charset=ISO-8859-1"/>
 
 <script type="text/javascript" src="js/mascara.js"></script>
 
 <title>Cadastro de Filme</title>
 </head>
-<body>
+<body class="background_Filme">
 
 	<f:view>
 	
 		<jsp:include page="/menu.jsp"></jsp:include>
-		<h:form>
+		<h:form styleClass="panel_cadastro">
 			<div align="center" style="width: 100%">
 			<h1>Cadastro de Filme</h1>
-
-			<div align="right" style="width: 50%">
+			<h:panelGrid columns="1">
+					<h:messages styleClass="font_error"/>
+			</h:panelGrid>
+			<div align="right" style="width: 100%">
 			
 			
 			<h:panelGrid columns="4">
@@ -36,8 +40,8 @@
 			<h:panelGrid columns="5">
 				<h:outputText value="Disponivel: " />
 				<h:selectOneRadio value="#{filmeBacking.disponivel}">
-					<f:selectItem itemValue="S" itemLabel="Sim"/>
-					<f:selectItem itemValue="N" itemLabel="Não"/>
+					<f:selectItem itemValue="SIM" itemLabel="Sim" />
+					<f:selectItem itemValue="NAO" itemLabel="Não"/>
 				</h:selectOneRadio>	
 				<div style="width: 216px"/>
 				<h:outputText value="Valor: " />
@@ -49,8 +53,8 @@
 			<h:panelGrid columns="5">
 				<h:outputText value="Promoção: "/>
 				<h:selectOneRadio value="#{filmeBacking.promocao}">
-					<f:selectItem itemValue="S" itemLabel="Sim"/>
-					<f:selectItem itemValue="N" itemLabel="Não"/>
+					<f:selectItem itemValue="SIM" itemLabel="Sim"/>
+					<f:selectItem itemValue="NAO" itemLabel="Não"/>
 				</h:selectOneRadio>	
 				<div style="width: 147px"/>
 				<h:outputText value="Valor Promoção: " />
@@ -68,10 +72,7 @@
 			</div>
 			</div>
 		</h:form>
-		
-		<h:panelGrid columns="1">
-				<h:messages />
-		</h:panelGrid>
+
 	
 	
 	</f:view>

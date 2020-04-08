@@ -7,36 +7,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" contet="text/html; charset=ISO-8859-1">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:8080/Sistema_Locadora/images/favicon-16x16.png"/>
+<link href="css/config.css" rel="stylesheet"/>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
 
-	<script type="text/javascript" src="js/mascara.js"></script>
+<script type="text/javascript" src="js/mascara.js"></script>
 
-	<title>Efetuar Locação</title>
+<title>Efetuar Locação</title>
 </head>
 <body>
 	<f:view>
 		<jsp:include page="/menu.jsp" />
-		<h:form>
-			<h1>Efetuar locação</h1>
+		<center>
+		<h:form styleClass="panel_cadastro">
+			
+			<h3>Efetuar locação</h3>
+			
+			<h:panelGrid columns="1">
+					<h:messages styleClass="font_error"/>
+			</h:panelGrid>
 
-
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="4">
+				<h:outputLabel value="Cliente: " />
 				<h:selectOneMenu 
 					value="#{clienteBacking.nome}"
 					id="comboCliente"
-					required="true" onchange="submit()"
+					required="false" onchange="submit()" requiredMessage="Selecione um cliente"
 					valueChangeListener="#{locacaoBacking.popularCliente}">
 					<f:selectItems value="#{clienteBacking.carregarClientesCombo()}" />
 					
 				</h:selectOneMenu>
 
-			</h:panelGrid>
-
-
-			<h:panelGrid columns="2">
+			<h:outputLabel value="Filme: " />
 				<h:selectOneMenu value="#{filmeBacking.nome}"
 					id="comboFilme"
-					required="true" onchange="submit()"
+					required="false" onchange="submit()" requiredMessage="Selecione um filme"
 					valueChangeListener="#{locacaoBacking.popularFilme}">
 					<f:selectItems value="#{filmeBacking.carregarFilmesCombo()}" />
 				</h:selectOneMenu>
@@ -62,15 +67,15 @@
 				<h:commandButton value="Salvar" action="#{locacaoBacking.salvar}" />
 				<h:commandButton value="Cancelar"
 					action="#{locacaoBacking.cancelar}" />
-				<h:commandButton value="Sair" action="#{locacaoBacking.sair}" />
+				<h:commandButton value="Sair" action="#{locacaoBacking.sair}" />	
+				
 			</h:panelGrid>
 
-			<h:panelGrid columns="1">
-				<h:messages />
-			</h:panelGrid>
 
 		</h:form>
 
+		
+	</center>
 
 	</f:view>
 </body>

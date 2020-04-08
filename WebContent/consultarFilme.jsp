@@ -3,35 +3,43 @@
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <%@taglib prefix="rich" uri="http://richfaces.org/rich"%>
+<%@taglib prefix="a4j" uri="http://richfaces.org/a4j"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="icon" type="image/png" sizes="16x16"
+	href="http://localhost:8080/Sistema_Locadora/images/favicon-16x16.png" />
+<link href="css/config.css" rel="stylesheet" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Consulta de Cliente</title>
 </head>
-<body>
+<body class="background_Filme">
 
 
 	<f:view>
 		<jsp:include page="/menu.jsp"></jsp:include>
-		
-		<h:form>
-			
-			
-			
-			<h:panelGrid columns="3">
-				<h:outputText value="Nome: " />
-				<h:inputText value="#{filmeBacking.nome}" maxlength="50" size="40" />
-				<h:commandButton value="Pesquisar Filme" action="#{filmeBacking.pesquisar}" />
+		<br>
+		<h:form id="formConsulta" styleClass="panel_cadastro">
+			<h:panelGrid columns="1">
+					<h:messages styleClass="font_error"/>
 			</h:panelGrid>
-			
-			<h:panelGrid columns="1" width="700">
-				<rich:dataTable id="listaCliente" width="100%" value="#{filmeBacking.listaFilme}" var="filme" >
-					
+			<center>
+				<h:panelGrid columns="3">
+					<h:outputText value="Nome: " />
+					<h:inputText value="#{filmeBacking.nome}" maxlength="50" size="40" />
+					<h:commandButton value="Pesquisar Filme"
+						action="#{filmeBacking.pesquisar}" />
+				</h:panelGrid>
+
+				<a4j:keepAlive beanName="filmeBacking" ajaxOnly="true" />
+				<rich:spacer height="30" />
+				<rich:dataTable width="490" id="listaFilme" rows="5"
+					columnClasses="col" value="#{filmeBacking.listaFilme}" var="filme">
+
 					<f:facet name="caption">
 						<h:outputText value="Lista de Filmes" />
 					</f:facet>
-					
+
 					<f:facet name="header">
 						<rich:columnGroup>
 							<rich:column>
@@ -55,49 +63,47 @@
 						</rich:columnGroup>
 					</f:facet>
 					<rich:column>
-						<h:outputText value="#{filme.nome}"/>
+						<h:outputText value="#{filme.nome}" />
 					</rich:column>
 					<rich:column>
-						<h:outputText value="#{filme.genero}"/>
+						<h:outputText value="#{filme.genero}" />
 					</rich:column>
 					<rich:column>
-						<h:outputText value="#{filmeBacking.valorTabela(filme)}"/>
+						<h:outputText value="#{filmeBacking.valorTabela(filme)}" />
 					</rich:column>
 					<rich:column>
-						<h:outputText value="#{filme.disponivel}"/>
+						<h:outputText value="#{filme.disponivel}" />
 					</rich:column>
 					<rich:column>
-						<h:outputText value="#{filme.promocao}"/>
+						<h:outputText value="#{filme.promocao}" />
 					</rich:column>
 					<rich:column>
 						<h:commandLink value="Excluir" action="#{filmeBacking.excluir}">
-						<f:setPropertyActionListener value="#{filme}" 
-							target="#{filmeBacking.filmeSelecionado}" />
+							<f:setPropertyActionListener value="#{filme}"
+								target="#{filmeBacking.filmeSelecionado}" />
 						</h:commandLink>
 					</rich:column>
 					<rich:column>
-						<h:commandLink value="Alterar" action="#{filmeBacking.alteraFilme}">
-						<f:setPropertyActionListener value="#{filme}"
-							target="#{filmeBacking.filmeSelecionado}" />
+						<h:commandLink value="Alterar"
+							action="#{filmeBacking.alteraFilme}">
+							<f:setPropertyActionListener value="#{filme}"
+								target="#{filmeBacking.filmeSelecionado}" />
 						</h:commandLink>
 					</rich:column>
 				</rich:dataTable>
-			</h:panelGrid>
+			</center>
+
+			<rich:datascroller align="center" for="listaFilme" maxPages="20"
+				page="#{filmeBacking.scrollerPage}" id="sc2" reRender="listaFilme" />
 			
+			<center>
 			<h:panelGrid columns="3">
-					<h:commandButton value="Retornar" 
-						action="#{filmeBacking.retornar}"/>
-					<h:commandButton value="Cancelar" 
-						action="#{filmeBacking.cancelar}"/>
-					<h:commandButton value="Avançar" 
-						action="#{filmeBacking.avancar}"/>
+				<h:commandButton value="Cancelar" action="#{filmeBacking.cancelar}" />
 			</h:panelGrid>
-			
-			<h:panelGrid columns="1">
-				<h:messages />
-			</h:panelGrid>
-		
+			</center>
+
 		</h:form>
+
 	</f:view>
 
 </body>

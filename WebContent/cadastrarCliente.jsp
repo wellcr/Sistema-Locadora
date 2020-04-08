@@ -6,34 +6,38 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" contet ="text/html; charset=ISO-8859-1">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:8080/Sistema_Locadora/images/favicon-16x16.png"/>
+<link href="css/config.css" rel="stylesheet"/>
+<meta http-equiv="Content-Type" content ="text/html; charset=ISO-8859-1"/>
 
 <script type="text/javascript" src="js/mascara.js"></script>
 
 <title>Cadastro de Cliente</title>
 </head>
-<body>
+<body class="background_Cliente">
 
 	<f:view>
 	
 		<jsp:include page="/menu.jsp"></jsp:include>
-		<h:form>
+		<h:form styleClass="panel_cadastro">
 			<div align="center" style="width: 100%">
 			<h1>Cadastro de Cliente</h1>
-			
-			<div align="right" style="width: 50%">
+			<h:panelGrid columns="1">
+					<h:messages styleClass="font_error"/>
+			</h:panelGrid>
+			<div align="right" style="width: 600px">
 			
 			
 			
 			<h:panelGrid columns="2">
 				<h:outputText value="Nome: " />
-				<h:inputText value="#{clienteBacking.nome}" maxlength="50" size="80" 
+				<h:inputText value="#{clienteBacking.nome}" maxlength="50" size="76" 
 								onkeyup="masc_letras(this)" />
 			</h:panelGrid>
 			
 			<h:panelGrid columns="4">
 				<h:outputText value="Logradouro: " />
-				<h:inputText value="#{clienteBacking.logradouro}" maxlength="51" size="56" 
+				<h:inputText value="#{clienteBacking.logradouro}" maxlength="51" size="52" 
 								onkeyup="aNumerico(this)"/>
 				<h:outputText value="Número: " />
 				<h:inputText value="#{clienteBacking.numero}" maxlength="50" size="8" 
@@ -44,7 +48,7 @@
 				<h:outputText value="Bairro: " />
 				<h:inputText value="#{clienteBacking.bairro}" maxlength="50" size="25" 
 								onkeyup="aNumerico(this)"/>
-				<div style="width: 85px"/>
+				<div style="width: 65px"/>
 				<h:outputText value="Cidade: " />
 				<h:inputText value="#{clienteBacking.cidade}" maxlength="50" size="25" 
 								onkeyup="masc_letras(this)" />
@@ -55,7 +59,7 @@
 				<h:outputText value="Estado: " />
 				<h:inputText value="#{clienteBacking.estado}" maxlength="50" size="25" 
 								onkeyup="masc_letras(this)" />
-				<div style="width: 101px"/>
+				<div style="width: 81px"/>
 				<h:outputText value="CEP: " />
 				<h:inputText value="#{clienteBacking.cep}" maxlength="10" size="25" 
 								onkeyup="masc_cep(this)"/>
@@ -65,7 +69,7 @@
 				<h:outputText value="Telefone: " />
 				<h:inputText value="#{clienteBacking.telefone}" maxlength="14" size="25"
 								onkeyup="masc_telefone(this)"/>
-				<div style="width: 101px"/>
+				<div style="width: 81px"/>
 				<h:outputText value="CPF: " />
 				<h:inputText value="#{clienteBacking.cpf}" maxlength="14" size="25"
 								onkeyup="masc_cpf(this)"/>
@@ -75,7 +79,7 @@
 				<h:outputText value="RG: " />
 				<h:inputText value="#{clienteBacking.rg}" maxlength="12" size="25"
 								onkeyup="masc_rg(this)"/>
-				<div style="width: 85px"/>
+				<div style="width: 65px"/>
 				<h:outputText value="Sexo: "/>
 				<h:selectOneRadio value="#{clienteBacking.sexo}">
 					<f:selectItem itemValue="F" itemLabel="Feminino"/>
@@ -84,10 +88,10 @@
 			</h:panelGrid>
 			
 			<h:panelGrid columns="5">
-				<h:outputText value="Data de nascimento: " />
+				<h:outputText value="Data nascimento:" />
 				<h:inputText value="#{clienteBacking.dataNascimento}" maxlength="10" size="25"
 								onkeyup="masc_data(this)"/>
-				<div style="width: 194px"/>
+				<div style="width: 174px"/>
 				<h:outputText value="Idade: " />
 				<h:inputText value="#{clienteBacking.idade}" maxlength="3" size="8" 
 								onkeyup="masc_numero(this)"/>
@@ -102,9 +106,6 @@
 			</div>
 			</div>
 		</h:form>
-		<h:panelGrid columns="1">
-				<h:messages />
-		</h:panelGrid>
 	
 	
 	</f:view>

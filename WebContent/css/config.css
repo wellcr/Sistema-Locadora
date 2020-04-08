@@ -1,0 +1,53 @@
+@charset "ISO-8859-1";
+
+.background_menu{
+	background-image: url("https://assets.nflxext.com/ffe/siteui/vlv3/3b48f428-24ed-4692-bb04-bc7771854131/949f70fe-46af-4931-9a83-55cde04f5188/BR-en-20200302-popsignuptwoweeks-perspective_alpha_website_small.jpg");	
+	background-size: 100%;
+}
+
+.titles_white{
+	font-style: normal;
+	
+}
+
+.background_Cliente{
+	background-image: url("../images/cliente.png");
+}
+
+.background_Filme{
+	background-image: url("../images/filme.jpg");
+}
+
+.background_Vendedor{
+	background-image: url("../images/vendedor.jpg");
+}
+
+.background_Relatorio{
+	background-image: url("../images/relatorio.jpg");
+	background-size: 100%;
+}
+
+.panel_cadastro{
+	position: absolute;
+	top: -10px;
+	width: 45%;
+	padding: 1px 6% 20px 6%;
+	margin: 100px 100px 100px 300px;
+	background: rgba(220,220,220,0.8);
+	border-radius: 15px;
+	
+}
+
+
+
+input{
+	border-radius: 7px;
+}
+	
+.font_error{
+	color: red;
+}	
+	
+}
+
+
